@@ -114,3 +114,10 @@ const defaultClothingItems = [
 ];
 
 export { defaultClothingItems };
+
+export const coordinates = {
+  latitude: 40.249199,
+  longitude: -75.646759,
+};
+
+export const APIkey = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}"; 
