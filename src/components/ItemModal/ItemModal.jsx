@@ -7,10 +7,8 @@ function ItemModal({ activeModal, onClose, card }) {
         <button
           onClick={onClose}
           type="button"
-          className="modal__close"
-        >
-          CLOSE
-        </button>
+          className="modal__close modal__close-white"
+        />
         <img src={card.link} alt="" className="modal__image" />
         <div className="modal__footer">
             <h2 className="modal__caption">{card.name}</h2>

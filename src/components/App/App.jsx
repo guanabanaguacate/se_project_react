@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather } from "../../utils/weatherApi";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -23,7 +23,7 @@ function App() {
   };
 
   const handleAddClick = () => {
-    setActiveModal("add-garnment");
+    setActiveModal("add-garment");
   };
 
   const closeActiveModal = () => {
@@ -95,7 +95,7 @@ function App() {
       <ItemModal
         activeModal={activeModal}
         card={SelectedCard}
-        onclose={closeActiveModal}
+        onClose={closeActiveModal}
       />
     </div>
   );

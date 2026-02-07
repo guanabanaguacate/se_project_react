@@ -23,6 +23,15 @@
   position: absolute;
   top: 20px;
   right: 28px;
+  border: none;
+  height: 20px;
+  background: transparent url("../../assets/closeButtonGrey.svg") center no-repeat;
+
+}
+
+.modal__close-white{
+  background: transparent url("../../assets/closeButton.png") center no-repeat;
+
 }
 
 .modal__content {

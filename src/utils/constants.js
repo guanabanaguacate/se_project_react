@@ -120,4 +120,4 @@ export const coordinates = {
   longitude: -75.646759,
 };
 
-export const APIkey = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}"; 
+export const APIkey = "41efed9c27438b834c0936a9717ca6b5"; 

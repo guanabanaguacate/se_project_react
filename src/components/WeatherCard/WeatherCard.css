@@ -8,7 +8,9 @@
 
 .weather-card__temp {
   font-size: 36px;
+  color: white;
   line-height: 40px;
+  /* font: cabinet grotesk; */
   margin: 0;
   position: absolute;
   top: 20px;
