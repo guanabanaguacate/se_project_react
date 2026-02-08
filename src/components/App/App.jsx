@@ -49,10 +49,7 @@ function App() {
           onAddButtonClick={setActiveModal}
         />
       </div>
-      <AddItemModal
-        onCloseModal={closeActiveModal}
-        activeModal={activeModal}
-      />
+      <AddItemModal onCloseModal={closeActiveModal} activeModal={activeModal} />
       <ItemModal
         activeModal={activeModal}
         card={SelectedCard}

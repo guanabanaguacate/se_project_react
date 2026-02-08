@@ -12,11 +12,11 @@
 }
 
 .modal_opened {
-    visibility: visible;
+  visibility: visible;
 }
 
-.modal__title{
-    margin: 0; 
+.modal__title {
+  margin: 0;
 }
 
 .modal__close {
@@ -25,13 +25,12 @@
   right: 28px;
   border: none;
   height: 20px;
-  background: transparent url("../../assets/closeButtonGrey.svg") center no-repeat;
-
+  background: transparent url("../../assets/closeButtonGrey.svg") center
+    no-repeat;
 }
 
-.modal__close-white{
+.modal__close-white {
   background: transparent url("../../assets/closeButton.png") center no-repeat;
-
 }
 
 .modal__content {
@@ -44,36 +43,36 @@
 }
 
 .modal__form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .modal__input {
-    display: block;
-    border: none;
-}
-
-.modal__radio-buttons {
-    border: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.modal__label_type_radio{
+  display: block;
   border: none;
 }
 
-.modal__label{
+.modal__radio-buttons {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label_type_radio {
+  border: none;
+}
+
+.modal__label {
   border-bottom: 1px solid black;
   width: 100%;
 }
 
-.modal__fieldset{
+.modal__fieldset {
   padding: 0;
 }
 
-.modal__fieldset_type_radio{
-border: none;
+.modal__fieldset_type_radio {
+  border: none;
 }
