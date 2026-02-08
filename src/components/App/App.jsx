@@ -55,6 +55,7 @@ function App() {
         card={SelectedCard}
         onClose={closeActiveModal}
       />
+      <Footer />
     </div>
   );
 }
