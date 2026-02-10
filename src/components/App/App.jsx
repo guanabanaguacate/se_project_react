@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants";
+import { coordinates, APIkey, defaultClothingItems } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
+
+import "./App.css";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -16,7 +16,14 @@ function App() {
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
-  const [SelectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState({});
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+
+  // const handleGetItem = () => {
+  //   fetch().then(item => {
+  //     setClothingItems(oldArray => [...oldArray, item])
+  //   })
+  // }
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -48,12 +55,17 @@ function App() {
           weatherData={weatherData}
           handleCardClick={handleCardClick}
           onAddButtonClick={setActiveModal}
+          clothingItems={clothingItems}
         />
       </div>
-      <AddItemModal onCloseModal={closeActiveModal} activeModal={activeModal} />
+      {activeModal === 'add-garment' && (
+        <AddItemModal
+          onCloseModal={closeActiveModal}
+        />
+      )}
       <ItemModal
         activeModal={activeModal}
-        card={SelectedCard}
+        card={selectedCard}
         onClose={closeActiveModal}
       />
       <Footer />

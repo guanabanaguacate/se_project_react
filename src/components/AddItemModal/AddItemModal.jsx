@@ -1,13 +1,15 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 // import { useForm } from "../../hooks/useForm";
 
-const AddItemModal = ({ activeModal, onCloseModal }) => {
+const AddItemModal = ({ onCloseModal }) => {
+// function ModalWithForm({ children, buttonText, title, onClose }) {
+  
   return (
     <ModalWithForm
       title="New garment"
       name="new-card"
       onClose={onCloseModal}
-      activeModal={activeModal}
+      buttonText="Add garment"
     >
       <label className="modal__label">
         Name
