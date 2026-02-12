@@ -55,6 +55,10 @@
   border: none;
 }
 
+.modal__radio-button {
+  margin-right: 5px;
+}
+
 .modal__radio-buttons {
   border: none;
   padding: 0;
@@ -106,6 +110,10 @@
   border-radius: 4px;
   color: white;
   background: #000000;
+}
+
+.modal__submit:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .modal__content {
