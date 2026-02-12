@@ -88,6 +88,7 @@
 .modal__input {
   border-bottom: 1px solid black;
   width: 100%;
+  margin: 8px;
 }
 
 .modal__legend {
