@@ -8,11 +8,11 @@
     position: relative;
 }
 
-.toggle-switch-checkbox{
+.toggle-switch__checkbox{
 opacity: 0;
 }
 
-.toggle-switch-circle{
+.toggle-switch__circle{
 background-color: black;
 width: 28px;
 height: 28px;
@@ -22,20 +22,24 @@ left: 0;
 transition: all 0.2s;
 }
 
-.toggle-switch-text{
+.toggle-switch__text{
     color: grey;
     position: absolute;
     top: 5px;
 }
 
-.toggle-switch-text-C{
+.toggle-switch__text-C{
 right: 9px;
 }
 
-.toggle-switch-text-F{
+.toggle-switch__text-F{
 left: 9px;
 }
 
 .toggle-switch_checkbox:checked ~ .toggle-switch-circle {
 left: 28px;
+}
+
+.toggle-switch__text_color_white{
+    color: white;
 }

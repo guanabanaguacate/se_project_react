@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { coordinates, APIkey, defaultClothingItems } from "../../utils/constants";
+import {
+  coordinates,
+  APIkey,
+  defaultClothingItems,
+} from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
@@ -8,6 +12,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 
 import "./App.css";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -18,6 +23,15 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const handleToggleSwitchChange = () => {
+    if (currentTemperatureUnit === "F"){
+      setCurrentTemperatureUnit("C");
+    }
+    else{
+      setCurrentTemperatureUnit("F");
+    }
+  }
 
   // const handleGetItem = () => {
   //   fetch().then(item => {
@@ -48,28 +62,28 @@ function App() {
   }, []);
 
   return (
-    <div className="page">
-      <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main
-          weatherData={weatherData}
-          handleCardClick={handleCardClick}
-          onAddButtonClick={setActiveModal}
-          clothingItems={clothingItems}
+    <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
+      <div className="page">
+        <div className="page__content">
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Main
+            weatherData={weatherData}
+            handleCardClick={handleCardClick}
+            onAddButtonClick={setActiveModal}
+            clothingItems={clothingItems}
+          />
+        </div>
+        {activeModal === "add-garment" && (
+          <AddItemModal onCloseModal={closeActiveModal} />
+        )}
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          onClose={closeActiveModal}
         />
+        <Footer />
       </div>
-      {activeModal === 'add-garment' && (
-        <AddItemModal
-          onCloseModal={closeActiveModal}
-        />
-      )}
-      <ItemModal
-        activeModal={activeModal}
-        card={selectedCard}
-        onClose={closeActiveModal}
-      />
-      <Footer />
-    </div>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 
