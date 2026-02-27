@@ -1,9 +1,15 @@
+import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-// import { useForm } from "../../hooks/useForm";
 
-const AddItemModal = ({ isOpen, handleSubmit, onCloseModal }) => {
-// function ModalWithForm({ children, buttonText, title, onClose }) {
-  
+const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
+  const defaultValues = { name: "", link: "", weatherType: "" };
+  const { values, handleChange } = useForm(defaultValues);
+
+  function handleSubmit(evt){
+    evt.preventDefault();
+    onAddItem(values);
+  }
+
   return (
     <ModalWithForm
       title="New garment"
@@ -24,6 +30,8 @@ const AddItemModal = ({ isOpen, handleSubmit, onCloseModal }) => {
           required
           minLength="1"
           maxLength="30"
+          value={values.name}
+          onChange={handleChange}
         />
       </label>
       <label className="modal__label">
@@ -35,6 +43,8 @@ const AddItemModal = ({ isOpen, handleSubmit, onCloseModal }) => {
           className="modal__input modal__input_type_url"
           placeholder="Image URL"
           required
+          value={values.link}
+          onChange={handleChange}
         />
       </label>
       <fieldset className="modal__fieldset modal__fieldset_type_radio">
@@ -46,6 +56,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onCloseModal }) => {
             id="choiceHot"
             name="weather"
             value="hot"
+            onChange={handleChange}
           />
           <label
             className="modal__label modal__label_type_radio"
@@ -61,6 +72,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onCloseModal }) => {
             id="choiceWarm"
             name="weather"
             value="warm"
+            onChange={handleChange}
           />
           <label
             className="modal__label modal__label_type_radio"
@@ -76,6 +88,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onCloseModal }) => {
             id="choiceCold"
             name="weather"
             value="cold"
+            onChange={handleChange}
           />
           <label
             className="modal__label modal__label_type_radio"

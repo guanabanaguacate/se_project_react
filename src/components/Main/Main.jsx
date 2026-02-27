@@ -1,6 +1,15 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
+import { BrowserRouter } from "react-router-dom";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
 
 function Main({ weatherData, handleCardClick, clothingItems }) {
   return (
@@ -8,7 +17,8 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {Math.round(weatherData.temp.F)} &deg; F / You may want to wear:
+          Today is {Math.round(weatherData.temp.F)} &deg; F / You may want to
+          wear:
         </p>
         <ul className="cards__list">
           {clothingItems
