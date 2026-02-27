@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 // import { useForm } from "../../hooks/useForm";
 
-const AddItemModal = ({ onCloseModal }) => {
+const AddItemModal = ({ isOpen, handleSubmit, onCloseModal }) => {
 // function ModalWithForm({ children, buttonText, title, onClose }) {
   
   return (
@@ -10,6 +10,8 @@ const AddItemModal = ({ onCloseModal }) => {
       name="new-card"
       onClose={onCloseModal}
       buttonText="Add garment"
+      onSubmit={handleSubmit}
+      isOpen={isOpen}
     >
       <label className="modal__label">
         Name

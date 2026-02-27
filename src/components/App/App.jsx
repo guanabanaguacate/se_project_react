@@ -19,19 +19,20 @@ function App() {
     type: "",
     temp: { F: 999, C: 999 },
     city: "",
+    condition: "",
+    isDay: false,
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "F"){
+    if (currentTemperatureUnit === "F") {
       setCurrentTemperatureUnit("C");
-    }
-    else{
+    } else {
       setCurrentTemperatureUnit("F");
     }
-  }
+  };
 
   // const handleGetItem = () => {
   //   fetch().then(item => {
@@ -62,7 +63,9 @@ function App() {
   }, []);
 
   return (
-    <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
@@ -74,12 +77,17 @@ function App() {
           />
         </div>
         {activeModal === "add-garment" && (
-          <AddItemModal onCloseModal={closeActiveModal} />
+          <AddItemModal
+            onCloseModal={closeActiveModal}
+            onClose={closeActiveModal}
+            isOpen={activeModal === "add-garment"}
+          />
         )}
         <ItemModal
           activeModal={activeModal}
-          card={selectedCard}
+          card={selectedCard || {}}
           onClose={closeActiveModal}
+          isOpen={activeModal === "preview"}
         />
         <Footer />
       </div>
