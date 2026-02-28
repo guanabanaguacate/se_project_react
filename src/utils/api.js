@@ -13,3 +13,8 @@ export const getItems = () => {
     }
   });
 };
+
+const api = {
+  getItems,
+};
+export default api;

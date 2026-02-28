@@ -2,10 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import {
-  coordinates,
-  APIkey,
-} from "../../utils/constants";
+import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
@@ -13,6 +10,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import api from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -77,6 +75,15 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    api
+      .getItems()
+      .then((items) => {
+        setClothingItems(items.reverse());
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -96,7 +103,15 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile onCardClick={handleCardClick} clothingItems={clothingItems} />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
           </Routes>
         </div>
         {activeModal === "add-garment" && (
