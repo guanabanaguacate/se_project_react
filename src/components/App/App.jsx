@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import {
@@ -96,7 +97,7 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<p>PROFILE</p>} />
+            <Route path="/profile" element={<Profile onCardClick={handleCardClick} clothingItems={clothingItems} />} />
           </Routes>
         </div>
         {activeModal === "add-garment" && (

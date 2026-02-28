@@ -36,10 +36,14 @@ right: 9px;
 left: 9px;
 }
 
-.toggle-switch_checkbox:checked ~ .toggle-switch-circle {
+/* .toggle-switch_checkbox:checked ~ .toggle-switch-circle {
 left: 28px;
-}
+} */
 
 .toggle-switch__text_color_white{
     color: white;
+}
+
+.toggle-switch__input:checked ~ .toggle-switch__circle {
+  left: calc(56px - 28px - 2px);
 }
