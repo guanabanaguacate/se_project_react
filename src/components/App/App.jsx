@@ -5,7 +5,6 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import {
   coordinates,
   APIkey,
-  defaultClothingItems,
 } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -25,7 +24,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") {
