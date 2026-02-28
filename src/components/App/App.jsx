@@ -80,9 +80,11 @@ function App() {
       .getItems()
       .then((items) => {
         setClothingItems(items.reverse());
+        console.log(items);
       })
       .catch(console.error);
   }, []);
+
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -106,6 +108,7 @@ function App() {
             <Route
               path="/profile"
               element={
+                clothingItems.length !==0 &&
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}

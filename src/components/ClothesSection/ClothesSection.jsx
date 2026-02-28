@@ -14,8 +14,11 @@ export default function ClothesSection({
       </div>
 
       <ul className="clothes-section__items">
-        {clothingItems
-          .filter((item) => item.weather === weatherData.type)
+        {
+          console.log(clothingItems)
+        }
+        { clothingItems.length !==0 &&
+        clothingItems 
           .map((item) => (
             <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
           ))}
