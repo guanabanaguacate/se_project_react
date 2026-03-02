@@ -10,7 +10,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import api from "../../utils/api";
+import {getItems, addItem, removeItem} from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -48,18 +48,20 @@ function App() {
   };
 
   const onAddItem = (inputValues) => {
-    // call the fetch function
-    // .then((data)=> {}) includes all the stuff below
     const newCardData = {
       name: inputValues.name,
-      link: inputValues.link,
-      weather: inputValues.weatherType,
+      imageUrl: inputValues.imageUrl,
+      weather: inputValues.weather,
     };
-    // dont use newCardData
-    //the ID will be included in the response data
-    setClothingItems([...clothingItems, newCardData]);
+    
+addItem(newCardData) 
+.then((data) => {
+    setClothingItems([data, ...clothingItems]);
+    closeActiveModal(); 
+})
+.catch(console.error);
+
     // closeActiveModal();
-    // .catch()
   };
 
   const closeActiveModal = () => {
@@ -76,14 +78,28 @@ function App() {
   }, []);
 
   useEffect(() => {
-    api
-      .getItems()
+    // api
+      getItems()
       .then((items) => {
         setClothingItems(items.reverse());
         console.log(items);
       })
       .catch(console.error);
   }, []);
+
+  // todo 
+  // add delete bgutton to the preview modal
+  // declare a handler in app.jsx (deleteItemHandler)
+  // pass handler to preview modal
+  //inside the preview modal, pass the ID as an argument to the handler
+  // use this pattern (use the handler pattern found in itemCard): function ItemCard({ item, onCardClick }) {
+  //const handleCardClick = () => {
+  //  onCardClick(item);
+  //};
+  //... Inside the handler
+  // -call the remove item funciton, pass it the ID
+  // -in the .then() remove the item from the array
+  // -how? filter
 
 
   return (

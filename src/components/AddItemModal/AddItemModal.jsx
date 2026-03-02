@@ -39,11 +39,11 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         <input
           type="url"
           name="imageUrl"
-          id="clothing-link"
+          id="clothing-imageUrl"
           className="modal__input modal__input_type_url"
           placeholder="Image URL"
           required
-          value={values.link}
+          value={values.imageUrl}
           onChange={handleChange}
         />
       </label>
