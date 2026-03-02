@@ -1,3 +1,26 @@
-.clothes-section__row{
-    display: flex;
+.clothes-section__row {
+  display: flex;
 }
+
+.clothes-section__items {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  padding: 0;
+}
+
+.clothes-section {
+  font-family: "CabinetGrotesk-Bold";
+  padding-left: 100px;
+  font-size: 20px;
+}
+
+.clothes-section__row-button {
+  color: grey;
+  border: none;
+  background-color: transparent;
+  margin-left: 20px;
+}
+
+.clothes-section__row-items {}

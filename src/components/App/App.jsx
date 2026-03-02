@@ -24,6 +24,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") {
       setCurrentTemperatureUnit("C");

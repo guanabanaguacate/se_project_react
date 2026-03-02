@@ -1,3 +1,23 @@
+.sidebar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* width: 229px;
+  height: 59px; */
+}
+
+.sidebar__username {
+  order: 2;
+  font-family: 'CabinetGrotesk-Bold';
+  font-size: 20px;
+  font-weight: 700;
+  width: 157px;
+}
+
+.sidebar__avatar {
+  order: 1;
+}
+
 .sidebar__profile {
   display: flex;
   flex-direction: row-reverse;
