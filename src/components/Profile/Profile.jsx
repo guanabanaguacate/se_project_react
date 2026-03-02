@@ -2,7 +2,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
-export default function Profile(clothingItems, onCardClick) {
+export default function Profile({clothingItems, onCardClick}) { 
   return (
     <section className="profile">
       <SideBar />
