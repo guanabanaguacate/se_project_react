@@ -5,9 +5,13 @@ This template provides a minimal setup to get React working in Vite with HMR and
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
 project name: Weather forecaster
 description: interactive weather planning solution for choosing an outfit based on current weather conditions
 technologies used: React, JavaScript, HTML, CSS
+
+Video Description:
+https://www.loom.com/share/bf221aa72fd34954914330847753d244 
