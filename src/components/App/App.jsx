@@ -10,7 +10,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import {getItems, addItem, removeItem} from "../../utils/api";
+import { getItems, addItem, removeItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -24,7 +24,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") {
       setCurrentTemperatureUnit("C");
@@ -32,12 +32,6 @@ function App() {
       setCurrentTemperatureUnit("F");
     }
   };
-
-  // const handleGetItem = () => {
-  //   fetch().then(item => {
-  //     setClothingItems(oldArray => [...oldArray, item])
-  //   })
-  // }
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -54,15 +48,14 @@ function App() {
       imageUrl: inputValues.imageUrl,
       weather: inputValues.weather,
     };
-    
-addItem(newCardData) 
-.then((data) => {
-    setClothingItems([data, ...clothingItems]);
-    closeActiveModal(); 
-})
-.catch(console.error);
 
-    // closeActiveModal();
+    addItem(newCardData)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch(console.error);
+
   };
 
   const closeActiveModal = () => {
@@ -80,7 +73,7 @@ addItem(newCardData)
 
   useEffect(() => {
     // api
-      getItems()
+    getItems()
       .then((items) => {
         setClothingItems(items.reverse());
         console.log(items);
@@ -88,7 +81,16 @@ addItem(newCardData)
       .catch(console.error);
   }, []);
 
-  // todo 
+const handleDeleteItem = (id) => {
+  removeItem(id)
+    .then(() => {
+      setClothingItems((prevItems) => prevItems.filter((item) => item._id !== id));
+      closeActiveModal();
+    })
+    .catch(console.error);
+};
+
+  // todo
   // add delete bgutton to the preview modal
   // declare a handler in app.jsx (deleteItemHandler)
   // pass handler to preview modal
@@ -101,7 +103,6 @@ addItem(newCardData)
   // -call the remove item funciton, pass it the ID
   // -in the .then() remove the item from the array
   // -how? filter
-
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -119,17 +120,19 @@ addItem(newCardData)
                   handleCardClick={handleCardClick}
                   onAddButtonClick={setActiveModal}
                   clothingItems={clothingItems}
+                  onDeleteItem={handleDeleteItem}
                 />
               }
             />
             <Route
               path="/profile"
               element={
-                clothingItems.length !==0 &&
-                <Profile
-                  onCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                />
+                clothingItems.length !== 0 && (
+                  <Profile
+                    onCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                  />
+                )
               }
             />
           </Routes>
