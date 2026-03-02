@@ -12,8 +12,9 @@ function Header({ handleAddClick, weatherData, username }) {
 
   return (
     <header className="header">
-{/* TODO- Link to home page */}
-      <img className="header__logo" src={logo} alt="header logo" />
+      <NavLink to="/" className="header__logo-link">
+        <img className="header__logo" src={logo} alt="header logo" />
+      </NavLink>
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
@@ -26,20 +27,22 @@ function Header({ handleAddClick, weatherData, username }) {
         + Add clothes
       </button>
       <NavLink className="header__nav-link" to="/profile">
-      <div className="header__user-container">
-        <div className="header__username">{username || "Terence Tegegne"}</div>
-        {avatar ? (
-          <img
-            src={avatar || avatarDefault}
-            alt="user avatar"
-            className="header__avatar"
-          />
-        ) : (
-          <span className="header__avatar header__avatar_none">
-            {username?.toUpperCase().charAt(0) || ""}
-          </span>
-        )}
-      </div>
+        <div className="header__user-container">
+          <div className="header__username">
+            {username || "Terence Tegegne"}
+          </div>
+          {avatar ? (
+            <img
+              src={avatar || avatarDefault}
+              alt="user avatar"
+              className="header__avatar"
+            />
+          ) : (
+            <span className="header__avatar header__avatar_none">
+              {username?.toUpperCase().charAt(0) || ""}
+            </span>
+          )}
+        </div>
       </NavLink>
     </header>
   );
