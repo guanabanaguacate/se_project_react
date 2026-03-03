@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { coordinates, APIkey } from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
@@ -62,7 +62,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
