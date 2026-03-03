@@ -55,7 +55,6 @@ function App() {
         closeActiveModal();
       })
       .catch(console.error);
-
   };
 
   const closeActiveModal = () => {
@@ -76,19 +75,20 @@ function App() {
     getItems()
       .then((items) => {
         setClothingItems(items.reverse());
-        console.log(items);
       })
       .catch(console.error);
   }, []);
 
-const handleDeleteItem = (id) => {
-  removeItem(id)
-    .then(() => {
-      setClothingItems((prevItems) => prevItems.filter((item) => item._id !== id));
-      closeActiveModal();
-    })
-    .catch(console.error);
-};
+  const handleDeleteItem = (id) => {
+    removeItem(id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== id)
+        );
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
 
   // todo
   // add delete bgutton to the preview modal
@@ -127,12 +127,11 @@ const handleDeleteItem = (id) => {
             <Route
               path="/profile"
               element={
-                clothingItems.length !== 0 && (
-                  <Profile
-                    onCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                  />
-                )
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  onAddClick={handleAddClick}
+                />
               }
             />
           </Routes>
@@ -150,6 +149,7 @@ const handleDeleteItem = (id) => {
           card={selectedCard || {}}
           onClose={closeActiveModal}
           isOpen={activeModal === "preview"}
+          onDeleteItem={handleDeleteItem}
         />
         <Footer />
       </div>
