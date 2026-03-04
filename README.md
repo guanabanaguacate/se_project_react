@@ -15,3 +15,7 @@ technologies used: React, JavaScript, HTML, CSS
 
 Video Description:
 https://www.loom.com/share/bf221aa72fd34954914330847753d244 
+
+
+Server call:
+json-server --watch db.json --id _id --port 3001

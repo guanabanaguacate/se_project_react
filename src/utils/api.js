@@ -26,7 +26,7 @@ export const addItem = ({ name, imageUrl, weather }) => {
   }).then(handleServerResponse);
 };
 
-export const removeItem = (itemID) => {
+export const removeItem = (itemId) => {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     // headers,

@@ -3,17 +3,17 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect } from "react";
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
- const defaultValues = { name: "", imageUrl: "", weather: "" }; 
+  const defaultValues = { name: "", imageUrl: "", weather: "" };
 
- useEffect(() => {
-  if (isOpen) {
-    setValues({ name: "", imageUrl: "", weather: "" });
-  }
-}, [isOpen, setValues]);
+  const { values, handleChange, setValues } = useForm(defaultValues);
 
- const { values, handleChange, handleReset } = useForm(defaultValues); 
+  useEffect(() => {
+    if (isOpen) {
+      setValues(defaultValues); // resets to defaultValues inside your hook
+    }
+  }, [isOpen, setValues]);
 
-  function handleSubmit(evt){
+  function handleSubmit(evt) {
     evt.preventDefault();
     onAddItem(values);
   }
@@ -64,6 +64,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             id="choiceHot"
             name="weather"
             value="hot"
+            checked={values.weather === "hot"}
             onChange={handleChange}
           />
           <label
@@ -80,6 +81,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             id="choiceWarm"
             name="weather"
             value="warm"
+            checked={values.weather === "warm"}
             onChange={handleChange}
           />
           <label
@@ -96,6 +98,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             id="choiceCold"
             name="weather"
             value="cold"
+            checked={values.weather === "cold"}
             onChange={handleChange}
           />
           <label
