@@ -1,19 +1,20 @@
+import { useContext } from "react";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatarDefault from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
   weatherData,
-  username,
-  avatar,
   isLoggedIn,
   onRegisterClick,
   onLoginClick,
   onSignOut,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -40,18 +41,16 @@ function Header({
           </button>
           <NavLink className="header__nav-link" to="/profile">
             <div className="header__user-container">
-              <div className="header__username">
-                {username || "Terence Tegegne"}
-              </div>
-              {avatar ? (
+              <div className="header__username">{currentUser?.name}</div>
+              {currentUser?.avatar ? (
                 <img
-                  src={avatar || avatarDefault}
+                  src={currentUser.avatar}
                   alt="user avatar"
                   className="header__avatar"
                 />
               ) : (
                 <span className="header__avatar header__avatar_none">
-                  {username?.toUpperCase().charAt(0) || ""}
+                  {currentUser?.name?.toUpperCase().charAt(0) || ""}
                 </span>
               )}
             </div>
