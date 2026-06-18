@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { coordinates, apiKey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -14,7 +15,14 @@ import Footer from "../Footer/Footer";
 import "./App.css";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { getItems, addItem, removeItem } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  removeItem,
+  addCardLike,
+  removeCardLike,
+  updateUserProfile,
+} from "../../utils/api";
 import { signup, signin, checkToken } from "../../utils/auth";
 
 function App() {
@@ -59,6 +67,10 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("login");
+  };
+
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
   };
 
   const onAddItem = (inputValues) => {
@@ -131,6 +143,38 @@ function App() {
       .catch(console.error);
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
+  const handleUpdateProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    updateUserProfile({ name, avatar }, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
   const handleRegistration = ({ name, avatar, email, password }) => {
     signup({ name, avatar, email, password })
       .then(() => {
@@ -177,8 +221,6 @@ function App() {
             <Header
               handleAddClick={handleAddClick}
               weatherData={weatherData}
-              username={currentUser?.name}
-              avatar={currentUser?.avatar}
               isLoggedIn={isLoggedIn}
               onRegisterClick={handleRegisterClick}
               onLoginClick={handleLoginClick}
@@ -194,6 +236,8 @@ function App() {
                     onAddButtonClick={setActiveModal}
                     clothingItems={clothingItems}
                     onDeleteItem={handleDeleteItem}
+                    onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -205,6 +249,10 @@ function App() {
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       onAddClick={handleAddClick}
+                      onCardLike={handleCardLike}
+                      isLoggedIn={isLoggedIn}
+                      onEditProfileClick={handleEditProfileClick}
+                      onSignOut={handleSignOut}
                     />
                   </ProtectedRoute>
                 }
@@ -231,6 +279,13 @@ function App() {
               isOpen={activeModal === "login"}
               onCloseModal={closeActiveModal}
               onLogin={handleLogin}
+            />
+          )}
+          {activeModal === "edit-profile" && (
+            <EditProfileModal
+              isOpen={activeModal === "edit-profile"}
+              onCloseModal={closeActiveModal}
+              onUpdateProfile={handleUpdateProfile}
             />
           )}
           <ItemModal
