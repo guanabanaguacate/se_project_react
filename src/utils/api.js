@@ -1,4 +1,5 @@
 const baseUrl = "http://localhost:3001";
+
 export const handleServerResponse = (res) => {
   if (!res.ok) {
     return Promise.reject(`Error: ${res.status}`);
@@ -6,7 +7,7 @@ export const handleServerResponse = (res) => {
   return res.json();
 };
 
-// Public — runs on page load regardless of auth status
+// Public endpoint — fetches items
 export const getItems = () => {
   return fetch(`${baseUrl}/items`, {
     headers: {
@@ -15,7 +16,7 @@ export const getItems = () => {
   }).then(handleServerResponse);
 };
 
-// Protected — requires a valid token
+// Protected — requires a valid JWT token
 export const addItem = ({ name, imageUrl, weather }, token) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",

@@ -73,7 +73,7 @@ function App() {
     setActiveModal("edit-profile");
   };
 
-  const onAddItem = (inputValues) => {
+  const handleAddItem = (inputValues) => {
     const token = localStorage.getItem("jwt");
     const newCardData = {
       name: inputValues.name,
@@ -197,7 +197,7 @@ function App() {
             setIsLoggedIn(true);
             setCurrentUser(userData);
             closeActiveModal();
-            navigate("/profile");
+            navigate("/");
           });
         }
       })
@@ -264,7 +264,7 @@ function App() {
               onCloseModal={closeActiveModal}
               onClose={closeActiveModal}
               isOpen={activeModal === "add-garment"}
-              onAddItem={onAddItem}
+              handleAddItem={handleAddItem}
             />
           )}
           {activeModal === "register" && (
