@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-import { handleServerResponse } from "./utils/api";
+import { handleServerResponse } from "./api";
 
 export const signup = ({ name, avatar, email, password }) => {
   return fetch(`${baseUrl}/signup`, {
