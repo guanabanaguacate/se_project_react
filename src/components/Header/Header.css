@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   padding: 0 0 28px;
-  font-family: 'CabinetGrotesk-Medium';
+  font-family: "CabinetGrotesk-Medium";
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
@@ -33,19 +33,25 @@
   margin-right: 24px;
 }
 
-.header__nav-link{
+.header__nav-link {
   color: black;
   text-decoration: none;
 }
 
-.header__signup-btn{
-border: none;
-margin: 10px;
-color: black;
+.header__signup-btn {
+  border: none;
+  margin: 10px;
+  color: black;
 }
 
-.header__login-btn{
-border: none;
-margin: 10px;
-color: black;
+.header__login-btn {
+  border: none;
+  margin: 10px;
+  color: black;
+}
+
+.header__avatar {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
 }

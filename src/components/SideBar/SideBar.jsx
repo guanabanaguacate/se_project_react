@@ -29,14 +29,14 @@ export default function SideBar({ onEditProfileClick, onSignOut }) {
           className="sidebar__edit-button"
           onClick={onEditProfileClick}
         >
-          Edit profile
+          Change profile data
         </button>
         <button
           type="button"
           className="sidebar__signout-button"
           onClick={onSignOut}
         >
-          Sign out
+          Log out
         </button>
       </div>
     </aside>

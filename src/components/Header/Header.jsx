@@ -55,13 +55,13 @@ function Header({
               )}
             </div>
           </NavLink>
-          <button
+          {/* <button
             onClick={onSignOut}
             type="button"
             className="header__signout-btn"
           >
             Log out
-          </button>
+          </button> */}
         </>
       ) : (
         <>
