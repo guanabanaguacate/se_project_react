@@ -74,7 +74,15 @@ function App() {
   };
 
   const handleAddItem = (inputValues) => {
+    console.log("JWT TOKEN:", localStorage.getItem("jwt"));
+    console.log("FORM VALUES:", inputValues);
+
     const token = localStorage.getItem("jwt");
+     if (inputValues.name.length < 2) {
+    alert("Name must be at least 2 characters");
+    return;
+  }
+    
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
@@ -179,11 +187,15 @@ function App() {
 
   const handleRegistration = ({ name, avatar, email, password }) => {
     signup({ name, avatar, email, password })
-      .then(() => {
-        // After successful registration, sign the user in immediately
-        return handleLogin({ email, password });
-      })
-      .catch(console.error);
+      .then(() => handleLogin({ email, password }))
+      .catch((err) => {
+        console.error("Signup error:", err);
+
+        if (String(err).includes("409")) {
+          alert("User already exists. Please log in instead.");
+          setActiveModal("login");
+        }
+      });
   };
 
   const handleLogin = ({ email, password }) => {
