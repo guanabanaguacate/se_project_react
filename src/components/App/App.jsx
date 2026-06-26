@@ -81,6 +81,8 @@ function App() {
       weather: inputValues.weather,
     };
 
+    console.log("Submitting:", newCardData);
+
     addItem(newCardData, token)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
