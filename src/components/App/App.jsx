@@ -262,9 +262,8 @@ function App() {
           {activeModal === "add-garment" && (
             <AddItemModal
               onCloseModal={closeActiveModal}
-              onClose={closeActiveModal}
               isOpen={activeModal === "add-garment"}
-              handleAddItem={handleAddItem}
+              onAddItem={handleAddItem}
             />
           )}
           {activeModal === "register" && (
