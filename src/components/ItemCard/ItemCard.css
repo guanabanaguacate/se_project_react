@@ -10,7 +10,6 @@
 }
 
 .card__name {
-  position: absolute;
   top: 15px;
   margin: 0;
   background-color: white;
@@ -29,8 +28,23 @@
   border-radius: 16px;
 }
 
-.card__header{}
+.card__header{
+  position: absolute;
+  top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-card__like-button{}
+.card__like-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+}
 
-card__like-button_active{}
+.card__like-button_active{
+  background: transparent;
+  border: none;
+}

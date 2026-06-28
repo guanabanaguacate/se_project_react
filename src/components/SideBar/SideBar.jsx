@@ -10,12 +10,11 @@ export default function SideBar({ onEditProfileClick, onSignOut }) {
   const avatar = currentUser?.avatar;
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar-container">
-        <div className="sidebar__username">{username}</div>
+    <div className="sidebar-container">
+      <div className="sidebar__top">
         {avatar ? (
           <img
-            src={avatar || avatarDefault}
+            src={avatar}
             alt="user avatar"
             className="sidebar__avatar"
           />
@@ -24,21 +23,23 @@ export default function SideBar({ onEditProfileClick, onSignOut }) {
             {username?.toUpperCase().charAt(0) || ""}
           </span>
         )}
-        <button
-          type="button"
-          className="sidebar__edit-button"
-          onClick={onEditProfileClick}
-        >
-          Change profile data
-        </button>
-        <button
-          type="button"
-          className="sidebar__signout-button"
-          onClick={onSignOut}
-        >
-          Log out
-        </button>
+
+        <div className="sidebar__username">{username}</div>
       </div>
-    </aside>
+
+      <button
+        className="sidebar__edit-button"
+        onClick={onEditProfileClick}
+      >
+        Change profile data
+      </button>
+
+      <button
+        className="sidebar__signout-button"
+        onClick={onSignOut}
+      >
+        Log out
+      </button>
+    </div>
   );
 }
