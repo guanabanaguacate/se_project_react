@@ -1,5 +1,8 @@
-const baseUrl = "http://localhost:3001";
-
+const baseUrl =
+  import.meta.env.PROD
+    ? "https://api.wtwr1.home.kg"
+    : "http://localhost:3001";
+    
 export const handleServerResponse = (res) => {
   if (!res.ok) {
     return Promise.reject(`Error: ${res.status}`);
